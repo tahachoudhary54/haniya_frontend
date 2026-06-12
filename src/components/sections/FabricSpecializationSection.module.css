@@ -1,0 +1,146 @@
+.section {
+  padding: 120px 0;
+  background-color: var(--color-warm-ivory);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 3rem;
+  color: var(--color-primary-navy);
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--color-dusty-blue);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  padding: 20px 0;
+}
+
+.card {
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(13, 43, 77, 0.05);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  border: 1px solid var(--color-border);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(13, 43, 77, 0.1);
+  border-color: var(--color-champagne);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 125%; /* 4:5 aspect ratio */
+  overflow: hidden;
+  background-color: #f8f8f8;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.content {
+  padding: 30px 25px;
+  text-align: center;
+}
+
+.badges {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.badgeMoq, .badgeWholesale {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badgeMoq {
+  background-color: var(--color-soft-beige);
+  color: var(--color-primary-navy);
+}
+
+.badgeWholesale {
+  background-color: var(--color-champagne);
+  color: white;
+}
+
+.fabricName {
+  font-family: var(--font-playfair), serif;
+  font-size: 1.5rem;
+  color: var(--color-primary-navy);
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: var(--color-dusty-blue);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.exploreBtn {
+  display: inline-block;
+  color: var(--color-champagne);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.exploreBtn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-champagne);
+  transition: width 0.3s ease;
+}
+
+.card:hover .exploreBtn::after {
+  width: 100%;
+}

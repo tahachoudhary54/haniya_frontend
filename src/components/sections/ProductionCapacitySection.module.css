@@ -1,0 +1,80 @@
+.section {
+  padding: 120px 0;
+  background-color: var(--color-warm-ivory);
+  position: relative;
+  background-image: url('/hero-video.mp4'); /* Just a placeholder thought for background, we'll use solid with a pattern */
+  background: var(--color-warm-ivory);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-size: 3rem;
+  color: var(--color-primary-navy);
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--color-dusty-blue);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.statCard {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(13, 43, 77, 0.05);
+  border-top: 3px solid var(--color-champagne);
+  transition: transform 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+}
+
+.counterWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-bottom: 15px;
+  color: var(--color-primary-navy);
+}
+
+.number {
+  font-family: var(--font-playfair), serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.suffix {
+  font-size: 2rem;
+  color: var(--color-champagne);
+  margin-left: 5px;
+  font-weight: 600;
+}
+
+.label {
+  font-size: 1rem;
+  color: var(--color-dusty-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}

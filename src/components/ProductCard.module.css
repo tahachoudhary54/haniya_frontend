@@ -1,0 +1,134 @@
+.card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(16, 42, 67, 0.08);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background-color: var(--color-soft-beige);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  z-index: 2;
+  border-radius: 2px;
+}
+
+.badgeLowStock {
+  background-color: var(--color-champagne);
+  color: var(--color-primary-navy);
+}
+
+.badgeOutOfStock {
+  background-color: var(--color-primary-navy);
+  color: var(--color-warm-ivory);
+}
+
+.content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.title {
+  font-family: var(--font-playfair), serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-primary-navy);
+}
+
+.fabric {
+  font-size: 0.85rem;
+  color: var(--color-dusty-blue);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.details {
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.moq {
+  font-size: 0.9rem;
+  color: var(--color-charcoal-text);
+  margin-bottom: 8px;
+}
+
+.pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.salePrice {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-primary-navy);
+}
+
+.originalPrice {
+  font-size: 1rem;
+  color: var(--color-dusty-blue);
+  text-decoration: line-through;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-primary-navy);
+}
+
+.btnDetails {
+  width: 100%;
+  padding: 14px 0;
+  text-align: center;
+  border: 1px solid var(--color-primary-navy);
+  background-color: transparent;
+  color: var(--color-primary-navy);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.btnDetails:hover {
+  background-color: var(--color-primary-navy);
+  color: var(--color-warm-ivory);
+}

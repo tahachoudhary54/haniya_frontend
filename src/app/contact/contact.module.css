@@ -1,0 +1,35 @@
+.contactPage {
+  background-color: var(--color-warm-ivory);
+  min-height: 100vh;
+}
+
+.hero {
+  padding: 160px 0 100px;
+  background-color: var(--color-primary-navy);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 3.5rem;
+  color: var(--color-warm-ivory);
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+  font-family: var(--font-playfair), serif;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--color-soft-beige);
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+@media (max-width: 968px) {
+  .title {
+    font-size: 2.5rem;
+  }
+}

@@ -1,0 +1,168 @@
+.manufacturingSection {
+  padding: 120px 0 80px;
+  background-color: var(--color-warm-ivory);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.title {
+  font-size: 3rem;
+  color: var(--color-primary-navy);
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--color-dusty-blue);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--color-border);
+  transform: translateX(-50%);
+}
+
+.timelineItem {
+  position: relative;
+  width: 50%;
+  padding: 40px 40px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.timelineItem.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timelineItem.left {
+  left: 0;
+  text-align: right;
+}
+
+.timelineItem.right {
+  left: 50%;
+  text-align: left;
+}
+
+.dot {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--color-champagne);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.left .dot {
+  right: -8px;
+}
+
+.right .dot {
+  left: -8px;
+}
+
+.content {
+  background: white;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(13, 43, 77, 0.05);
+  border: 1px solid var(--color-border);
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.content:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-champagne);
+  box-shadow: 0 15px 40px rgba(13, 43, 77, 0.1);
+}
+
+.imageContainer {
+  width: 100%;
+  height: 250px;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.stepImage {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s ease;
+}
+
+.content:hover .stepImage {
+  transform: scale(1.05);
+}
+
+.stepNumber {
+  font-family: var(--font-playfair), serif;
+  font-size: 2.5rem;
+  color: var(--color-champagne);
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: block;
+  line-height: 1;
+}
+
+.stepTitle {
+  font-family: var(--font-playfair), serif;
+  font-size: 1.5rem;
+  color: var(--color-primary-navy);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.stepDesc {
+  font-size: 0.95rem;
+  color: var(--color-dusty-blue);
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .timelineLine {
+    left: 20px;
+  }
+  
+  .timelineItem {
+    width: 100%;
+    padding: 30px 0 30px 50px;
+  }
+  
+  .timelineItem.left, .timelineItem.right {
+    left: 0;
+    text-align: left;
+  }
+  
+  .left .dot, .right .dot {
+    left: 12px;
+  }
+}

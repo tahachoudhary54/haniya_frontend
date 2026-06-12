@@ -1,0 +1,108 @@
+.aboutPage {
+  background-color: var(--color-warm-ivory);
+  min-height: 100vh;
+}
+
+.hero {
+  padding: 160px 0 100px;
+  background-color: var(--color-primary-navy);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 3.5rem;
+  color: var(--color-warm-ivory);
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+  font-family: var(--font-playfair), serif;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--color-soft-beige);
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.contentSection {
+  padding: 100px 0;
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  color: var(--color-primary-navy);
+  margin-bottom: 30px;
+  font-family: var(--font-playfair), serif;
+}
+
+.text {
+  font-size: 1.1rem;
+  color: var(--color-dusty-blue);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.storyImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(13, 43, 77, 0.12);
+  border-bottom: 4px solid #D4AF37;
+}
+
+.storyImage {
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.storyImageWrapper:hover .storyImage {
+  transform: scale(1.03);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to top, rgba(13,43,77,0.35), rgba(13,43,77,0.05));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.floatingBadge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: white;
+  color: var(--color-primary-navy);
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-family: var(--font-playfair), serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  z-index: 2;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border-left: 3px solid #D4AF37;
+}
+
+@media (max-width: 968px) {
+  .storyGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+}
