@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Award, Factory, ShieldCheck, Globe } from "lucide-react";
 import styles from "./ProductionCapacitySection.module.css";
 
 const stats = [
-  { id: 1, label: "Years of Experience", target: 25, suffix: "+" },
-  { id: 2, label: "Monthly Capacity (Units)", target: 100000, suffix: "+" },
-  { id: 3, label: "Quality Inspection Rate", target: 100, suffix: "%" },
-  { id: 4, label: "Export Markets", target: 40, suffix: "+" }
+  { id: 1, label: "Years of Experience", target: 25, suffix: "+", description: "Trusted manufacturing expertise.", icon: Award },
+  { id: 2, label: "Monthly Capacity", target: 100000, suffix: "+", description: "Scalable production for large orders.", icon: Factory },
+  { id: 3, label: "Quality Inspection Rate", target: 100, suffix: "%", description: "Every garment inspected before dispatch.", icon: ShieldCheck },
+  { id: 4, label: "Export Markets", target: 40, suffix: "+", description: "Serving clients across the globe.", icon: Globe }
 ];
 
 const Counter = ({ target, suffix }) => {
@@ -62,7 +63,7 @@ export default function ProductionCapacitySection() {
   return (
     <section className={styles.section}>
       <div className={styles.overlay}></div>
-      <div className="container">
+      <div className={`container ${styles.container}`}>
         <div className={styles.header}>
           <h2 className={styles.title}>Production Capacity</h2>
           <p className={styles.subtitle}>
@@ -71,12 +72,19 @@ export default function ProductionCapacitySection() {
         </div>
 
         <div className={styles.grid}>
-          {stats.map((stat) => (
-            <div key={stat.id} className={styles.statCard}>
-              <Counter target={stat.target} suffix={stat.suffix} />
-              <p className={styles.label}>{stat.label}</p>
-            </div>
-          ))}
+          {stats.map((stat) => {
+            const Icon = stat.icon;
+            return (
+              <div key={stat.id} className={styles.statCard}>
+                <div className={styles.iconWrapper}>
+                  <Icon size={28} className={styles.icon} />
+                </div>
+                <Counter target={stat.target} suffix={stat.suffix} />
+                <p className={styles.label}>{stat.label}</p>
+                <p className={styles.description}>{stat.description}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

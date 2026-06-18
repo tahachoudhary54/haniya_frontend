@@ -8,23 +8,48 @@ export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Load from localStorage on mount
-  useEffect(() => {
-    const savedCart = localStorage.getItem("haniya_cart");
-    if (savedCart) {
-      try {
-        setCartItems(JSON.parse(savedCart));
-      } catch (e) {
-        console.error("Failed to parse cart data");
+  const getCartKey = () => {
+    try {
+      const userStr = localStorage.getItem("haniya_user");
+      if (userStr) {
+        const user = JSON.parse(userStr);
+        if (user && user.id) return `haniya_cart_${user.id}`;
       }
-    }
-    setIsInitialized(true);
+    } catch (e) {}
+    return "haniya_cart";
+  };
+
+  // Load from localStorage on mount & auth change
+  useEffect(() => {
+    const loadCart = () => {
+      const cartKey = getCartKey();
+      const savedCart = localStorage.getItem(cartKey);
+      if (savedCart) {
+        try {
+          setCartItems(JSON.parse(savedCart));
+        } catch (e) {
+          setCartItems([]);
+          console.error("Failed to parse cart data");
+        }
+      } else {
+        setCartItems([]);
+      }
+      setIsInitialized(true);
+    };
+
+    loadCart();
+    window.addEventListener("auth_change", loadCart);
+    
+    return () => {
+      window.removeEventListener("auth_change", loadCart);
+    };
   }, []);
 
   // Save to localStorage when cart changes
   useEffect(() => {
     if (isInitialized) {
-      localStorage.setItem("haniya_cart", JSON.stringify(cartItems));
+      const cartKey = getCartKey();
+      localStorage.setItem(cartKey, JSON.stringify(cartItems));
     }
   }, [cartItems, isInitialized]);
 

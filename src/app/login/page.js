@@ -32,8 +32,12 @@ export default function LoginPage() {
       if (response.ok) {
         localStorage.setItem("haniya_user", JSON.stringify(data.user));
         window.dispatchEvent(new Event("auth_change"));
-        // Redirect to home page
-        router.push("/");
+        // Redirect to admin or home page
+        if (data.user.role === 'admin') {
+          router.push("/admin");
+        } else {
+          router.push("/");
+        }
       } else {
         setError(data.message || "Failed to sign in");
       }

@@ -40,10 +40,9 @@ export default function Footer() {
           
           <div className={styles.linksColumn}>
             <h4 className={styles.columnTitle}>Contact Info</h4>
-            <p className={styles.contactItem}><strong>Email:</strong> wholesale@haniyagarments.com</p>
-            <p className={styles.contactItem}><strong>Phone:</strong> +91 74001 66461</p>
+            <p className={styles.contactItem}><strong>Email:</strong> noorhaniya2024@gmail.com</p>
             <p className={styles.contactItem}><strong>WhatsApp:</strong> +91 74001 66461</p>
-            <p className={styles.contactItem}><strong>Address:</strong> 123 Manufacturing District, Global Apparel Hub</p>
+
           </div>
         </div>
         

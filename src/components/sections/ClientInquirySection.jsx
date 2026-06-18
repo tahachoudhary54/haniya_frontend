@@ -42,7 +42,7 @@ export default function ClientInquirySection() {
                   </span>
                   <div>
                     <strong>Email Inquiry</strong>
-                    <p>wholesale@haniyagarments.com</p>
+                    <p>noorhaniya2024@gmail.com</p>
                   </div>
                 </div>
               </div>

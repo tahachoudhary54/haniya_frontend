@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
@@ -9,6 +9,7 @@ import styles from "./signup.module.css";
 
 export default function SignupPage() {
   const router = useRouter();
+  const inputRefs = useRef([]);
   const [formData, setFormData] = useState({
     fullName: "",
     companyName: "",
@@ -17,7 +18,7 @@ export default function SignupPage() {
     password: "",
   });
   
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -25,6 +26,37 @@ export default function SignupPage() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleOtpChange = (index, value) => {
+    if (isNaN(value)) return;
+    const newOtp = [...otp];
+    newOtp[index] = value.substring(value.length - 1);
+    setOtp(newOtp);
+    if (value && index < 5) {
+      inputRefs.current[index + 1].focus();
+    }
+  };
+
+  const handleOtpKeyDown = (index, e) => {
+    if (e.key === "Backspace" && !otp[index] && index > 0) {
+      inputRefs.current[index - 1].focus();
+    }
+  };
+
+  const handleOtpPaste = (e) => {
+    e.preventDefault();
+    const pastedData = e.clipboardData.getData("text").trim();
+    if (/^\d+$/.test(pastedData)) {
+      const digits = pastedData.slice(0, 6).split("");
+      const newOtp = [...otp];
+      digits.forEach((digit, i) => {
+        if (i < 6) newOtp[i] = digit;
+      });
+      setOtp(newOtp);
+      const focusIndex = Math.min(digits.length, 5);
+      inputRefs.current[focusIndex].focus();
+    }
   };
 
   const handleSignupSubmit = async (e) => {
@@ -56,6 +88,11 @@ export default function SignupPage() {
 
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
+    const otpValue = otp.join("");
+    if (otpValue.length !== 6) {
+      setError("Please enter all 6 digits.");
+      return;
+    }
     setLoading(true);
     setError("");
     
@@ -63,7 +100,7 @@ export default function SignupPage() {
       const response = await fetch("http://localhost:5000/api/auth/verify-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: formData.email, otp }),
+        body: JSON.stringify({ email: formData.email, otp: otpValue }),
       });
       
       const data = await response.json();
@@ -165,22 +202,26 @@ export default function SignupPage() {
                   {error && <div className={styles.errorMessage}>{error}</div>}
                   
                   <form className={styles.form} onSubmit={handleOtpSubmit}>
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="otp">One Time Password (OTP)</label>
-                      <input 
-                        type="text" 
-                        id="otp" 
-                        placeholder="Enter 6-digit OTP" 
-                        required 
-                        maxLength="6"
-                        onChange={(e) => setOtp(e.target.value)} 
-                        value={otp} 
-                        disabled={loading} 
-                        style={{ textAlign: 'center', fontSize: '1.5rem', letterSpacing: '0.2em' }}
-                      />
+                    <div className={styles.otpContainer} onPaste={handleOtpPaste}>
+                      {otp.map((digit, index) => (
+                        <input
+                          key={index}
+                          type="text"
+                          inputMode="numeric"
+                          autoComplete="one-time-code"
+                          maxLength={1}
+                          className={styles.otpInput}
+                          value={digit}
+                          onChange={(e) => handleOtpChange(index, e.target.value)}
+                          onKeyDown={(e) => handleOtpKeyDown(index, e)}
+                          ref={(el) => (inputRefs.current[index] = el)}
+                          required
+                          disabled={loading}
+                        />
+                      ))}
                     </div>
                     
-                    <button type="submit" className={styles.submitBtn} disabled={loading}>
+                    <button type="submit" className={styles.submitBtn} disabled={loading || otp.join("").length !== 6}>
                       {loading ? "Verifying..." : "Verify Account"}
                     </button>
                   </form>

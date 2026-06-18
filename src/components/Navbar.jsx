@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import styles from "./Navbar.module.css";
@@ -12,6 +12,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
   const pathname = usePathname();
+  const router = useRouter();
   const { getCartCount, isInitialized } = useCart();
 
   useEffect(() => {
@@ -63,6 +64,7 @@ export default function Navbar() {
     setUser(null);
     setMobileMenuOpen(false);
     window.dispatchEvent(new Event("auth_change"));
+    router.push("/login");
   };
 
   const darkHeroPages = ['/', '/wholesale', '/about', '/contact'];
@@ -99,6 +101,9 @@ export default function Navbar() {
             <div className={styles.accountDropdown}>
               <button className={styles.loginBtn}>My Account</button>
               <div className={styles.dropdownMenu}>
+                {user?.role === 'admin' && (
+                  <Link href="/admin" className={styles.dropdownItem} onClick={() => setMobileMenuOpen(false)}>Admin Panel</Link>
+                )}
                 <Link href="/profile" className={styles.dropdownItem} onClick={() => setMobileMenuOpen(false)}>Profile</Link>
                 <Link href="/orders" className={styles.dropdownItem} onClick={() => setMobileMenuOpen(false)}>Orders</Link>
                 <Link href="/addresses" className={styles.dropdownItem} onClick={() => setMobileMenuOpen(false)}>Addresses</Link>
@@ -115,12 +120,14 @@ export default function Navbar() {
             </Link>
           )}
 
-          <Link href="/cart" className={styles.cartIcon} onClick={() => setMobileMenuOpen(false)}>
-            <ShoppingCart size={24} />
-            {isInitialized && getCartCount() > 0 && (
-              <span className={styles.cartBadge}>{getCartCount()}</span>
-            )}
-          </Link>
+          {user && (
+            <Link href="/cart" className={styles.cartIcon} onClick={() => setMobileMenuOpen(false)}>
+              <ShoppingCart size={24} />
+              {isInitialized && getCartCount() > 0 && (
+                <span className={styles.cartBadge}>{getCartCount()}</span>
+              )}
+            </Link>
+          )}
         </div>
 
         <button className={styles.hamburger} onClick={toggleMobileMenu} aria-label="Toggle menu">

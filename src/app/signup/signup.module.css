@@ -256,3 +256,38 @@
 .textBtn:hover {
   color: var(--color-champagne);
 }
+
+.otpContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.otpInput {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: #fafafa;
+  color: var(--color-charcoal-text);
+  transition: all 0.3s ease;
+}
+
+.otpInput:focus {
+  outline: none;
+  border-color: var(--color-champagne);
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+@media (max-width: 576px) {
+  .otpInput {
+    width: 40px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+}
