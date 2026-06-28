@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Package, ShoppingBag, Users, LogOut } from "lucide-react";
+import { Menu, X, LayoutDashboard, Package, ShoppingBag, Users, LogOut, Home } from "lucide-react";
 import styles from "./admin.module.css";
 
 export default function AdminLayout({ children }) {
@@ -11,6 +11,7 @@ export default function AdminLayout({ children }) {
   const pathname = usePathname();
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     const checkAdmin = () => {
@@ -34,6 +35,20 @@ export default function AdminLayout({ children }) {
     checkAdmin();
   }, [router]);
 
+  useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+    };
+  }, [isSidebarOpen]);
+
   if (loading) {
     return <div className={styles.loading}>Loading Admin Panel...</div>;
   }
@@ -51,11 +66,29 @@ export default function AdminLayout({ children }) {
     { name: "Users", path: "/admin/users", icon: <Users size={20} /> },
   ];
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className={styles.adminLayout}>
-      <aside className={styles.sidebar}>
+      <div className={styles.mobileHeader}>
+        <button onClick={toggleSidebar} className={styles.menuBtn}>
+          <Menu size={24} />
+        </button>
+        <h2>Haniya Admin</h2>
+      </div>
+
+      {isSidebarOpen && (
+        <div className={styles.overlay} onClick={toggleSidebar}></div>
+      )}
+
+      <aside className={`${styles.sidebar} ${isSidebarOpen ? styles.sidebarOpen : ""}`}>
         <div className={styles.sidebarHeader}>
           <h2>Haniya Admin</h2>
+          <button className={styles.closeBtn} onClick={toggleSidebar}>
+            <X size={24} />
+          </button>
         </div>
         <nav className={styles.sidebarNav}>
           {navItems.map((item) => (
@@ -63,6 +96,7 @@ export default function AdminLayout({ children }) {
               key={item.name}
               href={item.path}
               className={`${styles.navItem} ${pathname === item.path ? styles.active : ""}`}
+              onClick={() => setIsSidebarOpen(false)}
             >
               {item.icon}
               <span>{item.name}</span>
@@ -70,6 +104,10 @@ export default function AdminLayout({ children }) {
           ))}
         </nav>
         <div className={styles.sidebarFooter}>
+          <Link href="/" className={styles.backBtn}>
+            <Home size={20} />
+            <span>Back to Shop</span>
+          </Link>
           <button onClick={handleLogout} className={styles.logoutBtn}>
             <LogOut size={20} />
             <span>Logout</span>

@@ -104,9 +104,13 @@ export default function Navbar() {
                 {user?.role === 'admin' && (
                   <Link href="/admin" className={styles.dropdownItem} onClick={() => setMobileMenuOpen(false)}>Admin Panel</Link>
                 )}
-                <Link href="/profile" className={styles.dropdownItem} onClick={() => setMobileMenuOpen(false)}>Profile</Link>
-                <Link href="/orders" className={styles.dropdownItem} onClick={() => setMobileMenuOpen(false)}>Orders</Link>
-                <Link href="/addresses" className={styles.dropdownItem} onClick={() => setMobileMenuOpen(false)}>Addresses</Link>
+                {user?.role !== 'admin' && (
+                  <>
+                    <Link href="/profile" className={styles.dropdownItem} onClick={() => setMobileMenuOpen(false)}>Profile</Link>
+                    <Link href="/orders" className={styles.dropdownItem} onClick={() => setMobileMenuOpen(false)}>Orders</Link>
+                    <Link href="/addresses" className={styles.dropdownItem} onClick={() => setMobileMenuOpen(false)}>Addresses</Link>
+                  </>
+                )}
                 <button onClick={handleLogout} className={styles.dropdownItem}>Logout</button>
               </div>
             </div>
@@ -121,7 +125,7 @@ export default function Navbar() {
           )}
 
           {user && (
-            <Link href="/cart" className={styles.cartIcon} onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/cart" className={`${styles.cartIcon} ${styles.desktopCart}`} onClick={() => setMobileMenuOpen(false)}>
               <ShoppingCart size={24} />
               {isInitialized && getCartCount() > 0 && (
                 <span className={styles.cartBadge}>{getCartCount()}</span>
@@ -130,11 +134,21 @@ export default function Navbar() {
           )}
         </div>
 
-        <button className={styles.hamburger} onClick={toggleMobileMenu} aria-label="Toggle menu">
-          <span className={`${styles.bar} ${mobileMenuOpen ? styles.bar1Open : ""}`}></span>
-          <span className={`${styles.bar} ${mobileMenuOpen ? styles.bar2Open : ""}`}></span>
-          <span className={`${styles.bar} ${mobileMenuOpen ? styles.bar3Open : ""}`}></span>
-        </button>
+        <div className={styles.mobileActions}>
+          {user && !mobileMenuOpen && (
+            <Link href="/cart" className={`${styles.cartIcon} ${styles.mobileCart}`} onClick={() => setMobileMenuOpen(false)}>
+              <ShoppingCart size={24} />
+              {isInitialized && getCartCount() > 0 && (
+                <span className={styles.cartBadge}>{getCartCount()}</span>
+              )}
+            </Link>
+          )}
+          <button className={styles.hamburger} onClick={toggleMobileMenu} aria-label="Toggle menu">
+            <span className={`${styles.bar} ${mobileMenuOpen ? styles.bar1Open : ""}`}></span>
+            <span className={`${styles.bar} ${mobileMenuOpen ? styles.bar2Open : ""}`}></span>
+            <span className={`${styles.bar} ${mobileMenuOpen ? styles.bar3Open : ""}`}></span>
+          </button>
+        </div>
       </div>
     </nav>
   );

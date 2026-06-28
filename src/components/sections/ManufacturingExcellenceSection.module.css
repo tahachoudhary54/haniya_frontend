@@ -222,4 +222,45 @@
     padding: 30px;
     gap: 40px;
   }
+  
+  .btnLink {
+    background-color: transparent;
+    color: var(--color-primary-navy);
+    padding: 14px 24px;
+    border-radius: 4px;
+    border: 1px solid var(--color-champagne);
+    font-weight: 500;
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btnLink::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.2), transparent);
+    animation: sweepGlow 3s infinite ease-in-out;
+  }
+  
+  .btnLink .arrow {
+    color: var(--color-champagne);
+    animation: bounceArrow 2s infinite ease-in-out;
+  }
+}
+
+@keyframes sweepGlow {
+  0% { left: -100%; }
+  50% { left: 200%; }
+  100% { left: 200%; }
+}
+
+@keyframes bounceArrow {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
 }

@@ -1,6 +1,7 @@
 .adminLayout {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   background-color: #f4f7fa;
 }
 
@@ -59,6 +60,26 @@
 .sidebarFooter {
   padding: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #a0aec0;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  margin-bottom: 8px;
+}
+
+.backBtn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
 }
 
 .logoutBtn {
@@ -132,7 +153,7 @@
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  overflow-x: auto;
 }
 
 .adminTable {
@@ -182,4 +203,190 @@
 
 .actionBtn.delete:hover {
   color: #e53e3e;
+}
+
+.mobileHeader {
+  display: none;
+}
+
+.overlay {
+  display: none;
+}
+
+.closeBtn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileHeader {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #0d2b4d;
+    color: white;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .mobileHeader h2 {
+    font-family: var(--font-playfair), serif;
+    color: #d4af37;
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
+  .menuBtn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .adminLayout {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .sidebarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .closeBtn {
+    display: flex;
+    background: none;
+    border: none;
+    color: #a0aec0;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  .sidebarNav {
+    flex-direction: column;
+    padding: 20px 0;
+    overflow-y: auto;
+  }
+  
+  .navItem {
+    padding: 12px 24px;
+    white-space: normal;
+  }
+  
+  .navItem.active {
+    border-bottom: none;
+    border-right: 3px solid #d4af37;
+  }
+  
+  .sidebarFooter {
+    display: block;
+    position: static;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+  }
+  
+  .logoutBtn {
+    width: 100%;
+    padding: 12px;
+    background: none;
+  }
+  
+  .logoutBtn span {
+    display: inline;
+  }
+  
+  .mainContent {
+    margin-left: 0;
+    padding: 15px;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .tableContainer {
+    overflow-x: hidden;
+    background: transparent;
+    box-shadow: none;
+  }
+  
+  .adminTable {
+    display: block;
+  }
+  
+  .adminTable thead {
+    display: none;
+  }
+  
+  .adminTable tbody {
+    display: block;
+  }
+  
+  .adminTable tr {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+  }
+  
+  .adminTable td {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid #f8fafc;
+    text-align: left;
+    gap: 4px;
+    word-break: break-word;
+  }
+  
+  .adminTable td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
 }

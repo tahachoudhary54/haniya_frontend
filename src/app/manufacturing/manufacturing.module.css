@@ -148,6 +148,19 @@
 }
 
 @media (max-width: 768px) {
+  .title {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    word-break: break-word;
+    hyphens: auto;
+    padding: 0 15px;
+    line-height: 1.2;
+  }
+  
+  .subtitle {
+    padding: 0 15px;
+    font-size: 1rem;
+  }
+
   .timelineLine {
     left: 20px;
   }
@@ -164,5 +177,11 @@
   
   .left .dot, .right .dot {
     left: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: clamp(1.6rem, 10vw, 2.2rem);
   }
 }

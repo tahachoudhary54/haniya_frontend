@@ -90,16 +90,30 @@
 }
 
 .socialIconLink {
-  color: var(--color-champagne);
-  transition: all 0.3s ease;
+  color: var(--color-primary-navy);
+  background-color: var(--color-champagne);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
 }
 
 .socialIconLink:hover {
-  transform: translateY(-3px);
-  color: var(--color-warm-ivory);
+  transform: translateY(-4px) scale(1.1);
+  background-color: var(--color-warm-ivory);
+  color: var(--color-primary-navy);
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 1024px) {
+  .topSection {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
 }
 
 @media (max-width: 768px) {

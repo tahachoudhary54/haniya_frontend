@@ -97,7 +97,7 @@
   border-left: 3px solid #D4AF37;
 }
 
-@media (max-width: 968px) {
+@media (max-width: 1024px) {
   .storyGrid {
     grid-template-columns: 1fr;
   }

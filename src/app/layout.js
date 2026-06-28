@@ -16,6 +16,12 @@ export const metadata = {
   description: "Supplying retailers and distributors with high-quality men's shirts crafted with precision.",
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 import { CartProvider } from "@/context/CartContext";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 

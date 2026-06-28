@@ -42,6 +42,7 @@
   z-index: 2;
   text-align: center;
   color: var(--color-warm-ivory);
+  width: 100%;
   max-width: 900px;
   padding: 0 20px;
   margin-top: 80px; /* Offset for navbar */
@@ -109,18 +110,52 @@
   color: var(--color-primary-navy);
 }
 
+@media (max-width: 1024px) {
+  .title {
+    font-size: 3.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 36px;
+  }
+}
+
 @media (max-width: 768px) {
   .title {
-    font-size: 3rem;
+    font-size: clamp(2rem, 8vw, 3rem);
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    padding: 0 15px;
   }
   
   .buttons {
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    padding: 0 15px;
   }
   
   .btnPrimary, .btnSecondary {
     width: 100%;
-    max-width: 300px;
   }
 }
+
+@media (max-width: 480px) {
+  .title {
+    font-size: clamp(1.6rem, 10vw, 2.2rem);
+    line-height: 1.2;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  .subtitle {
+    font-size: 0.95rem;
+  }
+}
+
+

@@ -28,7 +28,7 @@
   line-height: 1.6;
 }
 
-@media (max-width: 968px) {
+@media (max-width: 1024px) {
   .title {
     font-size: 2.5rem;
   }

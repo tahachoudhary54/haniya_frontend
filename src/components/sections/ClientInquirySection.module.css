@@ -178,7 +178,7 @@
   color: var(--color-primary-navy);
 }
 
-@media (max-width: 968px) {
+@media (max-width: 1024px) {
   .wrapper {
     grid-template-columns: 1fr;
   }
@@ -194,8 +194,24 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .formGrid {
     grid-template-columns: 1fr;
+  }
+  
+  .contactCard {
+    padding: 30px 20px;
+  }
+  
+  .detailItem p {
+    word-break: break-all;
+  }
+  
+  .formContainer {
+    padding: 30px 20px;
+  }
+  
+  .contactTitle {
+    font-size: 26px;
   }
 }

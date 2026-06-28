@@ -124,7 +124,16 @@
   max-width: 220px;
 }
 
+@media (max-width: 1024px) {
+  .title {
+    font-size: 2.2rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .title {
+    font-size: 1.8rem;
+  }
   .number {
     font-size: 2.5rem;
   }

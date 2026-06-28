@@ -249,9 +249,33 @@
   transition: all 0.3s ease;
 }
 
-/* Mobile Styles */
-@media (max-width: 968px) {
+.mobileActions {
+  display: none;
+  align-items: center;
+  gap: 20px;
+}
+
+.mobileCart {
+  display: none;
+  margin-left: 0;
+  z-index: 1001;
+}
+
+/* Mobile & Tablet Styles */
+@media (max-width: 1024px) {
   .hamburger {
+    display: flex;
+  }
+  
+  .desktopCart {
+    display: none;
+  }
+  
+  .mobileActions {
+    display: flex;
+  }
+  
+  .mobileCart {
     display: flex;
   }
 
@@ -276,6 +300,7 @@
 
   .bar1Open {
     transform: rotate(45deg) translate(5px, 5px);
+    background-color: var(--color-primary-navy) !important;
   }
 
   .bar2Open {
@@ -284,5 +309,44 @@
 
   .bar3Open {
     transform: rotate(-45deg) translate(5px, -5px);
+    background-color: var(--color-primary-navy) !important;
+  }
+  
+  /* Force dark text on mobile menu regardless of heroTransparent */
+  .heroTransparent .navLink,
+  .heroTransparent .loginBtn {
+    color: var(--color-primary-navy);
+  }
+  
+  .heroTransparent .navLink::after {
+    background-color: var(--color-champagne);
+  }
+  
+  .heroTransparent .navLink:hover,
+  .heroTransparent .active {
+    color: var(--color-champagne);
+  }
+  
+  .heroTransparent .loginBtn {
+    border-color: var(--color-primary-navy);
+  }
+  
+  .heroTransparent .loginBtn:hover {
+    background-color: var(--color-primary-navy);
+    color: var(--color-warm-ivory);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .logoImg {
+    height: 45px;
+  }
+  
+  .scrolled .logoImg {
+    height: 35px;
   }
 }
