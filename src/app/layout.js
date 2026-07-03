@@ -23,7 +23,7 @@ export const viewport = {
 };
 
 import { CartProvider } from "@/context/CartContext";
-import WhatsAppWidget from "@/components/WhatsAppWidget";
+import WhatsAppWrapper from "@/components/WhatsAppWrapper";
 
 export default function RootLayout({ children }) {
   return (
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
       <body className={`${playfair.variable} ${inter.variable}`} style={{ fontFamily: 'var(--font-inter), sans-serif' }}>
         <CartProvider>
           {children}
-          <WhatsAppWidget />
+          <WhatsAppWrapper />
         </CartProvider>
       </body>
     </html>
