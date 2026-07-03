@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import styles from "../admin.module.css";
 import { CheckCircle, Truck, Package, Clock } from "lucide-react";
+import API_URL from "@/lib/api";
 
 export default function AdminOrders() {
   const [orders, setOrders] = useState([]);
@@ -14,7 +15,7 @@ export default function AdminOrders() {
 
   const fetchOrders = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/orders");
+      const res = await fetch(`${API_URL}/api/orders`);
       if (res.ok) {
         const data = await res.json();
         setOrders(data);
@@ -29,7 +30,7 @@ export default function AdminOrders() {
   const markAsDelivered = async (id) => {
     if (window.confirm("Mark this order as delivered?")) {
       try {
-        const res = await fetch(`http://localhost:5000/api/orders/${id}/deliver`, {
+        const res = await fetch(`${API_URL}/api/orders/${id}/deliver`, {
           method: "PUT"
         });
         if (res.ok) {

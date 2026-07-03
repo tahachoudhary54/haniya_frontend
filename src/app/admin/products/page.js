@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Plus, Edit, Trash2 } from "lucide-react";
 import styles from "../admin.module.css";
+import API_URL from "@/lib/api";
 
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);
@@ -15,7 +16,7 @@ export default function AdminProducts() {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/products");
+      const res = await fetch(`${API_URL}/api/products`);
       if (res.ok) {
         const data = await res.json();
         setProducts(data);
@@ -30,7 +31,7 @@ export default function AdminProducts() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        const res = await fetch(`http://localhost:5000/api/products/${id}`, {
+        const res = await fetch(`${API_URL}/api/products/${id}`, {
           method: "DELETE"
         });
         if (res.ok) {
@@ -76,7 +77,7 @@ export default function AdminProducts() {
                 <tr key={product._id}>
                   <td>
                     <img 
-                      src={product.image.startsWith('http') ? product.image : `http://localhost:5000${product.image}`} 
+                      src={product.image.startsWith('http') ? product.image : `${API_URL}${product.image}`} 
                       alt={product.name} 
                       style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' }}
                       onError={(e) => { e.target.src = 'https://via.placeholder.com/50'; }}

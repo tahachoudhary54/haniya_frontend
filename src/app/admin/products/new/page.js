@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Save } from "lucide-react";
 import styles from "../../admin.module.css";
+import API_URL from "@/lib/api";
 
 export default function AddProduct() {
   const router = useRouter();
@@ -48,7 +49,7 @@ export default function AddProduct() {
       const imageFormData = new FormData();
       imageFormData.append("image", imageFile);
 
-      const uploadRes = await fetch("http://localhost:5000/api/upload", {
+      const uploadRes = await fetch(`${API_URL}/api/upload`, {
         method: "POST",
         body: imageFormData
       });
@@ -57,7 +58,7 @@ export default function AddProduct() {
       const imagePath = await uploadRes.text();
 
       // 2. Create Product
-      const productRes = await fetch("http://localhost:5000/api/products", {
+      const productRes = await fetch(`${API_URL}/api/products`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

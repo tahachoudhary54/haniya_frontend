@@ -6,6 +6,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import styles from "./orders.module.css";
+import API_URL from "@/lib/api";
 
 export default function OrdersPage() {
   const router = useRouter();
@@ -29,7 +30,7 @@ export default function OrdersPage() {
 
   const fetchOrders = async (userId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/my-orders/${userId}`);
+      const res = await fetch(`${API_URL}/api/orders/my-orders/${userId}`);
       if (res.ok) {
         const data = await res.json();
         setOrders(data);
@@ -98,7 +99,7 @@ export default function OrdersPage() {
                   <div className={styles.orderBody}>
                     {order.orderItems.map((item, idx) => (
                       <div key={idx} className={styles.item}>
-                        <img src={`http://localhost:5000${item.image}`} alt={item.name} className={styles.itemImg} />
+                        <img src={`${API_URL}${item.image}`} alt={item.name} className={styles.itemImg} />
                         <div className={styles.itemDetails}>
                           <div className={styles.itemName}>{item.name}</div>
                           <div className={styles.itemQty}>Qty: {item.qty} &times; ₹{item.price.toFixed(2)}</div>

@@ -6,6 +6,7 @@ import { Trash2, Plus } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import styles from "./addresses.module.css";
+import API_URL from "@/lib/api";
 
 export default function AddressesPage() {
   const router = useRouter();
@@ -39,7 +40,7 @@ export default function AddressesPage() {
 
   const fetchProfile = async (userId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${userId}/profile`);
+      const res = await fetch(`${API_URL}/api/users/${userId}/profile`);
       if (res.ok) {
         const data = await res.json();
         setAddresses(data.addresses || []);
@@ -58,7 +59,7 @@ export default function AddressesPage() {
   const handleAddAddress = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${user.id}/addresses`, {
+      const res = await fetch(`${API_URL}/api/users/${user.id}/addresses`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
@@ -78,7 +79,7 @@ export default function AddressesPage() {
     if (!confirm("Are you sure you want to delete this address?")) return;
     
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${user.id}/addresses/${addressId}`, {
+      const res = await fetch(`${API_URL}/api/users/${user.id}/addresses/${addressId}`, {
         method: "DELETE"
       });
       if (res.ok) {

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import styles from "../admin.module.css";
 import { CheckCircle, XCircle, Shield, User } from "lucide-react";
+import API_URL from "@/lib/api";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -14,7 +15,7 @@ export default function AdminUsers() {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/users");
+      const res = await fetch(`${API_URL}/api/users`);
       if (res.ok) {
         const data = await res.json();
         setUsers(data);
@@ -29,7 +30,7 @@ export default function AdminUsers() {
   const verifyUser = async (id) => {
     if (window.confirm("Manually verify this user? They will be able to log in without email verification.")) {
       try {
-        const res = await fetch(`http://localhost:5000/api/users/${id}/verify`, {
+        const res = await fetch(`${API_URL}/api/users/${id}/verify`, {
           method: "PUT"
         });
         if (res.ok) {

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import styles from "./profile.module.css";
+import API_URL from "@/lib/api";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -37,7 +38,7 @@ export default function ProfilePage() {
 
   const fetchProfile = async (userId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${userId}/profile`);
+      const res = await fetch(`${API_URL}/api/users/${userId}/profile`);
       if (res.ok) {
         const data = await res.json();
         setFormData({
@@ -64,7 +65,7 @@ export default function ProfilePage() {
     setMessage({ type: "", text: "" });
 
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${user.id}/profile`, {
+      const res = await fetch(`${API_URL}/api/users/${user.id}/profile`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)

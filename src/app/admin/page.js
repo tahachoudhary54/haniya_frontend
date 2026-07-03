@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import styles from "./admin.module.css";
 import { Users, ShoppingBag, DollarSign, Package } from "lucide-react";
+import API_URL from "@/lib/api";
 
 export default function AdminDashboard() {
   const [data, setData] = useState({
@@ -17,7 +18,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/dashboard");
+        const res = await fetch(`${API_URL}/api/admin/dashboard`);
         if (res.ok) {
           const json = await res.json();
           setData(json);
